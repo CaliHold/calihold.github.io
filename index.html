@@ -3,72 +3,224 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CaliHold</title>
-  <meta name="description" content="CaliHold — structured calisthenics for beginners.">
+  <title>CaliHold | Free Beginner Roadmap Guide</title>
+  <meta name="description" content="Free CaliHold Beginner Roadmap Guide: pick your training schedule and follow one full-body calisthenics session, step by step.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    @font-face { font-family: 'Anton'; src: url('anton.woff2') format('woff2'); font-display: swap; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; }
+    html { background: #000; }
     body {
-      background: #000;
-      color: #fff;
-      font-family: 'Inter', system-ui, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 32px 24px;
+      background: #000; color: #fff;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .Y { color: #FED12E; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    header { padding: 28px 0; }
+    header .wrap { display: flex; align-items: center; justify-content: space-between; }
+    header img { height: 40px; display: block; }
+    header a.yt {
+      font-family: 'Anton', Impact, sans-serif; letter-spacing: 1.2px; font-size: 15px;
+      text-decoration: none; color: #fff; opacity: .85;
+    }
+    header a.yt:hover { opacity: 1; color: #FED12E; }
+
+    .hero { padding: 40px 0 72px; }
+    .hero .wrap { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+    .kicker {
+      display: inline-block; font-family: 'Anton', Impact, sans-serif; letter-spacing: 1.6px;
+      font-size: 14px; color: #000; background: #FED12E; padding: 5px 10px; border-radius: 4px;
     }
     h1 {
-      font-family: 'Anton', Impact, sans-serif;
-      color: #FED12E;
-      font-size: clamp(64px, 16vw, 160px);
-      letter-spacing: 2px;
-      line-height: 1;
+      font-family: 'Anton', Impact, sans-serif; font-weight: 400;
+      font-size: clamp(44px, 6.4vw, 78px); line-height: 1.02; letter-spacing: 1.8px;
+      margin-top: 18px;
     }
-    .tagline {
-      font-family: 'Anton', Impact, sans-serif;
-      font-size: clamp(20px, 4.5vw, 34px);
-      margin-top: 16px;
-      letter-spacing: 1px;
+    .lead { font-size: 18px; color: #cfcfcf; margin-top: 18px; max-width: 520px; }
+
+    ul.inside { list-style: none; margin-top: 26px; display: grid; gap: 12px; }
+    ul.inside li { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: #e6e6e6; }
+    ul.inside li::before {
+      content: ""; flex: 0 0 10px; height: 10px; margin-top: 8px; border-radius: 2px; background: #FED12E;
     }
-    .note {
-      margin-top: 20px;
-      font-size: 17px;
-      color: #cfcfcf;
-      max-width: 460px;
-      line-height: 1.5;
+
+    /* form */
+    .signup { margin-top: 30px; max-width: 520px; }
+    .ml-form-embedContainer, .ml-form-align-center, .ml-form-embedWrapper, .ml-form-embedBody { all: unset; display: block; }
+    .row { display: flex; gap: 10px; }
+    .row input[type=email] {
+      flex: 1; min-width: 0; background: #141414; color: #fff;
+      border: 1.5px solid #333; border-radius: 6px; padding: 16px 16px;
+      font: 500 16px 'Inter', system-ui, sans-serif; outline: none;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 36px;
-      background: #FED12E;
-      color: #000;
-      font-family: 'Anton', Impact, sans-serif;
-      font-size: 22px;
-      letter-spacing: 1px;
-      text-decoration: none;
-      padding: 14px 32px;
-      border-radius: 6px;
+    .row input[type=email]::placeholder { color: #8a8a8a; }
+    .row input[type=email]:focus { border-color: #FED12E; }
+    .ml-error input { border-color: #ff5a5a !important; }
+    .ml-form-embedSubmit button {
+      font-family: 'Anton', Impact, sans-serif; letter-spacing: 1.4px; font-size: 18px;
+      background: #FED12E; color: #000; border: none; border-radius: 6px;
+      padding: 0 22px; height: 100%; min-height: 56px; cursor: pointer; white-space: nowrap;
     }
-    .btn:hover { opacity: 0.9; }
-    footer {
-      position: fixed;
-      bottom: 20px;
-      font-size: 14px;
-      color: #8a8a8a;
+    .ml-form-embedSubmit button:hover { filter: brightness(1.06); }
+    .ml-form-embedSubmit button.loading { display: none; }
+    .ml-form-embedSubmitLoad {
+      display: inline-block; width: 22px; height: 22px; border-radius: 50%;
+      border: 3px solid #000; border-color: #000 #000 #000 transparent;
+      animation: spin 1s linear infinite; vertical-align: middle;
     }
-    footer a { color: #8a8a8a; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+    .fine { font-size: 13px; color: #8a8a8a; margin-top: 12px; }
+    .ml-form-successBody {
+      background: #141414; border-left: 5px solid #FED12E; border-radius: 0 6px 6px 0; padding: 20px 22px;
+    }
+    .ml-form-successBody h4 { font-family: 'Anton', Impact, sans-serif; font-weight: 400; font-size: 26px; letter-spacing: 1.4px; color: #FED12E; }
+    .ml-form-successBody p { color: #d9d9d9; margin-top: 6px; }
+
+    /* preview */
+    .preview { position: relative; height: 560px; }
+    .preview img {
+      position: absolute; width: 66%; border-radius: 8px;
+      box-shadow: 0 30px 60px rgba(0,0,0,.6), 0 0 0 1px #2a2a2a;
+    }
+    .preview .p1 { left: 0; top: 0; transform: rotate(-4deg); }
+    .preview .p2 { right: 0; top: 70px; transform: rotate(3deg); }
+    .preview .tagv {
+      position: absolute; right: 6%; bottom: 14px;
+      font-family: 'Anton', Impact, sans-serif; letter-spacing: 1.4px; font-size: 14px;
+      background: #fff; color: #000; padding: 5px 10px; border-radius: 4px;
+    }
+
+    .grows { border-top: 1px solid #1f1f1f; padding: 56px 0; }
+    .grows .wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: #111; border: 1px solid #222; border-radius: 10px; padding: 24px; }
+    .card .n { font-family: 'Anton', Impact, sans-serif; font-size: 36px; color: #FED12E; letter-spacing: 1.4px; line-height: 1; }
+    .card h3 { font-family: 'Anton', Impact, sans-serif; font-weight: 400; font-size: 20px; letter-spacing: 1.3px; margin-top: 10px; }
+    .card p { color: #bdbdbd; font-size: 15px; margin-top: 6px; }
+
+    footer { border-top: 1px solid #1f1f1f; padding: 28px 0 40px; font-size: 14px; color: #8a8a8a; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer a { color: #cfcfcf; text-decoration: none; }
+    footer a:hover { color: #FED12E; }
+
+    @media (max-width: 860px) {
+      .hero { padding: 16px 0 48px; }
+      .hero .wrap { grid-template-columns: 1fr; gap: 36px; }
+      .preview { height: auto; aspect-ratio: 1 / 1.08; max-width: 460px; width: 100%; margin: 0 auto; }
+      .preview img { width: 62%; }
+      .preview .p2 { top: 12%; }
+      .grows .wrap { grid-template-columns: 1fr; }
+      header img { height: 32px; }
+    }
+    @media (max-width: 480px) {
+      .row { flex-direction: column; }
+      .ml-form-embedSubmit button { width: 100%; }
+      .lead { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
-  <h1><span style="color:#fff;">Cali</span>Hold</h1>
-  <p class="tagline">STRUCTURED CALISTHENICS FOR BEGINNERS</p>
-  <p class="note">A free beginner roadmap guide is coming soon. Start with the videos on YouTube.</p>
-  <a class="btn" href="https://www.youtube.com/@CaliHold" target="_blank" rel="noopener">WATCH ON YOUTUBE</a>
-  <footer>Contact: <a href="mailto:Hello@CaliHold.com">Hello@CaliHold.com</a></footer>
+
+  <header>
+    <div class="wrap">
+      <a href="/"><img src="calihold-lockup.svg" alt="CaliHold"></a>
+      <a class="yt" href="https://www.youtube.com/@CaliHold" target="_blank" rel="noopener">YOUTUBE ↗</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="kicker">FREE BEGINNER ROADMAP GUIDE</span>
+        <h1>START CALISTHENICS<br><span class="Y">WITH A PLAN.</span></h1>
+        <p class="lead">Pick your training schedule and follow one full-body session, step by step. Made for beginners. Free.</p>
+
+        <ul class="inside">
+          <li>4 training schedules, including a 2-day version if you're short on time</li>
+          <li>One full-body session, step by step: what to do, how many sets, how long to rest</li>
+          <li>Grows with the roadmap: every new step adds to the guide</li>
+        </ul>
+
+        <!-- MailerLite form (styled for CaliHold) -->
+        <div class="signup">
+          <div id="mlb2-48150122" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-48150122">
+            <div class="ml-form-align-center">
+              <div class="ml-form-embedWrapper embedForm">
+                <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                  <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2773554/forms/203377015606216385/subscribe" data-code="" method="post" target="_blank">
+                    <div class="row">
+                      <div class="ml-form-formContent" style="flex:1; display:flex;">
+                        <div class="ml-form-fieldRow ml-last-item" style="flex:1; display:flex;">
+                          <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required" style="flex:1; display:flex;">
+                            <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Your email" autocomplete="email">
+                          </div>
+                        </div>
+                      </div>
+                      <input type="hidden" name="ml-submit" value="1">
+                      <div class="ml-form-embedSubmit">
+                        <button type="submit" class="primary">SEND ME THE GUIDE</button>
+                        <button disabled="disabled" style="display: none;" type="button" class="loading">
+                          <div class="ml-form-embedSubmitLoad"></div>
+                          <span class="sr-only">Loading...</span>
+                        </button>
+                      </div>
+                    </div>
+                    <input type="hidden" name="anticsrf" value="true">
+                  </form>
+                  <p class="fine">You'll get an email to confirm. After that, the guide arrives in your inbox. Unsubscribe anytime.</p>
+                </div>
+                <div class="ml-form-successBody row-success" style="display: none">
+                  <div class="ml-form-successContent">
+                    <h4>CHECK YOUR INBOX</h4>
+                    <p>Confirm your email, and your guide is on its way. Can't find it? Check your spam or promotions folder.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview" aria-hidden="true">
+        <img class="p1" src="guide-page-1.png" alt="">
+        <img class="p2" src="guide-page-2.png" alt="">
+        <span class="tagv">PDF · UPDATED WITH EVERY STEP</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="grows">
+    <div class="wrap">
+      <div class="card"><div class="n">01</div><h3>GET THE GUIDE</h3><p>Enter your email and confirm it. The guide lands in your inbox.</p></div>
+      <div class="card"><div class="n">02</div><h3>PICK YOUR SCHEDULE</h3><p>Choose the version that fits your week, and stick to it.</p></div>
+      <div class="card"><div class="n">03</div><h3>FOLLOW THE ROADMAP</h3><p>Every new roadmap step adds to the guide. Same link, newest version.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© CaliHold</span>
+      <span><a href="https://www.youtube.com/@CaliHold" target="_blank" rel="noopener">YouTube</a> · <a href="mailto:Hello@CaliHold.com">Hello@CaliHold.com</a></span>
+    </div>
+  </footer>
+
+  <script>
+    function ml_webform_success_48150122() {
+      var $ = ml_jQuery || jQuery;
+      $('.ml-subscribe-form-48150122 .row-success').show();
+      $('.ml-subscribe-form-48150122 .row-form').hide();
+    }
+  </script>
+  <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519" type="text/javascript"></script>
+  <script>
+    fetch("https://assets.mailerlite.com/jsonp/2773554/forms/203377015606216385/takel");
+  </script>
 </body>
 </html>
