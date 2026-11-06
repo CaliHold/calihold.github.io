@@ -4,7 +4,7 @@
 <svg
    version="1.1"
    id="svg1"
-   viewBox="70.87 70.87 1191.6 1191.6"
+   viewBox="0 0 1333.3333 1333.3333"
    sodipodi:docname="CaliHold Logo System.ai"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -54,7 +54,7 @@
        margin="0 0.34933332 0.47600001 0"
        bleed="0" />
   </sodipodi:namedview>
-  <circle cx="666.67" cy="666.67" r="595.8" fill="#000000" />
+  <circle cx="666.67" cy="666.67" r="666.67" fill="#000000" />
   <g
      id="layer-MC0"
      inkscape:groupmode="layer"
